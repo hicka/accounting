@@ -723,8 +723,7 @@ class TransactionTest extends TestCase
         $this->expectException(AdjustingReportingPeriod::class);
         $this->expectExceptionMessage('Only Journal Entry Transactions can be posted to a reporting period whose status is ADJUSTING');
 
-
-        factory(Transaction::class)->create([
+        Transaction::factory()->create([
             "transaction_type" => Transaction::IN,
             "transaction_date" => Carbon::now()->subYears(3)
         ]);

@@ -1,21 +1,26 @@
 <?php
+namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Faker\Generator as Faker;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Assignment;
 use Seyls\Accounting\Models\Transaction;
 
-$factory->define(
-    Assignment::class,
-    function (Faker $faker) {
+class AssignmentFactory extends Factory
+{
+    protected $model = Assignment::class;
+
+    public function definition()
+    {
         return [
-            'assignment_date' => $faker->dateTimeThisMonth(),
-            'transaction_id' => factory(Transaction::class)->create()->id,
-            'cleared_id' => factory(Transaction::class)->create()->id,
+            'assignment_date' => $this->faker->dateTimeThisMonth(),
+            'transaction_id' => Transaction::factory()->create()->id,
+            'cleared_id' => Transaction::factory()->create()->id,
             'cleared_type' => Transaction::class,
-            'amount' => $faker->randomFloat(2),
+            'amount' => $this->faker->randomFloat(2),
         ];
     }
-);
+}

@@ -12,9 +12,12 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\CategoryFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Testing\Fluent\Concerns\Has;
 use Seyls\Accounting\Interfaces\Recyclable;
 use Seyls\Accounting\Interfaces\Segregatable;
 
@@ -39,6 +42,7 @@ class Category extends Model implements Segregatable, Recyclable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +54,11 @@ class Category extends Model implements Segregatable, Recyclable
         'category_type',
         'entity_id',
     ];
+
+    protected static function newFactory()
+    {
+        return new CategoryFactory();
+    }
 
     /**
      * Instance Identifier.

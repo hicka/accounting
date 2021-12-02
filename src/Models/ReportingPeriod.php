@@ -12,6 +12,8 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\ReportingPeriodFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -50,6 +52,7 @@ class ReportingPeriod extends Model implements Segregatable, Recyclable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * Reporting Period Status
@@ -72,6 +75,11 @@ class ReportingPeriod extends Model implements Segregatable, Recyclable
         'status',
         'entity_id',
     ];
+
+    protected static function newFactory()
+    {
+        return new ReportingPeriodFactory();
+    }
 
     /**
      * Construct new Reporting Period.

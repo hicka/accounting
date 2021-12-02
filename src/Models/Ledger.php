@@ -12,9 +12,12 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\LedgerFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Testing\Fluent\Concerns\Has;
 use Seyls\Accounting\Interfaces\Segregatable;
 
 use Seyls\Accounting\Traits\Segregating;
@@ -43,6 +46,7 @@ class Ledger extends Model implements Segregatable
     use Segregating;
     use SoftDeletes;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +54,11 @@ class Ledger extends Model implements Segregatable
      * @var array
      */
     protected $fillable = [];
+
+    protected static function newFactory()
+    {
+        return new LedgerFactory();
+    }
 
     /**
      * Get Ledger pairs and assign the proper entry types

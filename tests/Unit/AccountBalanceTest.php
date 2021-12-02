@@ -474,8 +474,9 @@ class AccountBalanceTest extends TestCase
         $this->expectException(NegativeAmount::class);
         $this->expectExceptionMessage('Balance Amount cannot be negative');
 
-        factory(Balance::class)->create([
-            "balance" => -100
+        Balance::factory()->create([
+            "balance" => -100,
+            "entity_id" => $this->entity->id,
         ]);
     }
 

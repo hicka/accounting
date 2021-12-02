@@ -1,19 +1,24 @@
 <?php
+namespace Database\Factories;
 
 /**
  * @var \Illuminate\Database\Eloquent\Factory $factory
  */
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\ReportingPeriod;
 use Faker\Generator as Faker;
 
-$factory->define(
-    ReportingPeriod::class,
-    function (Faker $faker) {
+class ReportingPeriodFactory extends Factory
+{
+    protected $model = ReportingPeriod::class;
+
+    public function definition()
+    {
         return [
-            'period_count' => $faker->randomDigit,
-            'calendar_year' => $faker->unique()->year,
+            'period_count' => $this->faker->randomDigit,
+            'calendar_year' => $this->faker->unique()->year,
             'status' => ReportingPeriod::OPEN,
         ];
     }
-);
+}

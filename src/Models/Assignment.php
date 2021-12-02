@@ -12,6 +12,8 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\AssignmentFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -54,6 +56,12 @@ class Assignment extends Model implements Segregatable
     use Segregating;
     use SoftDeletes;
     use ModelTablePrefix;
+    use HasFactory;
+
+    protected static function newFactory()
+    {
+        return new AssignmentFactory();
+    }
 
     /**
      * Clearable Transaction Types

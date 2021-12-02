@@ -1,30 +1,50 @@
 <?php
+namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Transaction;
 use Seyls\Accounting\Models\Account;
 use Seyls\Accounting\Models\Currency;
 use Seyls\Accounting\Models\ExchangeRate;
 
-$factory->define(
-    Transaction::class,
-    function (Faker $faker) {
+class TransactionFactory extends Factory
+{
+    protected $model = Transaction::class;
+
+    public function definition(): array
+    {
         return [
-            'exchange_rate_id' => factory(ExchangeRate::class)->create()->id,
-            'currency_id' => factory(Currency::class)->create()->id,
-            'account_id' => factory(Account::class)->create([
-                'category_id' => null
-            ])->id,
+            'exchange_rate_id' => ExchangeRate::factory()->create()->id,
+            'currency_id' => Currency::factory()->create()->id,
+            'account_id' => Account::factory()->create()->id,
             'transaction_date' => Carbon::now(),
-            'transaction_no' => $faker->word,
-            'transaction_type' => $faker->randomElement(array_keys(config('accounting')['transactions'])),
-            'reference' => $faker->word,
-            'narration' => $faker->sentence,
+            'transaction_no' => $this->faker->word,
+            'transaction_type' => $this->faker->randomElement(array_keys(config('accounting')['transactions'])),
+            'reference' => $this->faker->word,
+            'narration' => $this->faker->sentence,
             'credited' =>  true,
         ];
     }
-);
+}
+
+//$factory->define(
+//    Transaction::class,
+//    function (Faker $faker) {
+//        return [
+//            'exchange_rate_id' => factory(ExchangeRate::class)->create()->id,
+//            'currency_id' => factory(Currency::class)->create()->id,
+//            'account_id' => Account::factory()->create()->id,
+//            'transaction_date' => Carbon::now(),
+//            'transaction_no' => $faker->word,
+//            'transaction_type' => $faker->randomElement(array_keys(config('accounting')['transactions'])),
+//            'reference' => $faker->word,
+//            'narration' => $faker->sentence,
+//            'credited' =>  true,
+//        ];
+//    }
+//);

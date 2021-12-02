@@ -10,6 +10,8 @@
 
 namespace Seyls\Accounting\Models;
 
+use Database\Factories\CurrencyFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,7 @@ class Currency extends Model implements Recyclable, Segregatable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +51,11 @@ class Currency extends Model implements Recyclable, Segregatable
         'currency_code',
         'entity_id',
     ];
+
+    protected static function newFactory()
+    {
+        return new CurrencyFactory();
+    }
 
     /**
      * Instance Identifier.

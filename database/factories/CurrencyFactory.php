@@ -1,19 +1,24 @@
 <?php
+namespace Database\Factories;
 
 /**
  * @var \Illuminate\Database\Eloquent\Factory $factory
  */
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Currency;
 
 use Faker\Generator as Faker;
 
-$factory->define(
-    Currency::class,
-    function (Faker $faker) {
+class CurrencyFactory extends Factory
+{
+    protected $model = Currency::class;
+
+    public function definition()
+    {
         return [
-            'name' => $faker->name,
-            'currency_code' => $faker->currencyCode,
+            'name' => $this->faker->name,
+            'currency_code' => $this->faker->currencyCode,
         ];
     }
-);
+}

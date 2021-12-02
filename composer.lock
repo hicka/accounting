@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb14f82c87703b9a6cdeb3e523c1e826",
+    "content-hash": "aa78da32280f24485acf83ab3e0f59ec",
     "packages": [
         {
             "name": "brick/math",
@@ -6208,62 +6208,6 @@
             "time": "2021-07-22T09:24:00+00:00"
         },
         {
-            "name": "laravel/legacy-factories",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/legacy-factories.git",
-                "reference": "8091d6d64e0e6ea22fb3326ef0b21936d0a0217c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/legacy-factories/zipball/8091d6d64e0e6ea22fb3326ef0b21936d0a0217c",
-                "reference": "8091d6d64e0e6ea22fb3326ef0b21936d0a0217c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/macroable": "^8.0",
-                "php": "^7.3|^8.0",
-                "symfony/finder": "^3.4|^4.0|^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "helpers.php"
-                ],
-                "psr-4": {
-                    "Illuminate\\Database\\Eloquent\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "The legacy version of the Laravel Eloquent factories.",
-            "homepage": "http://laravel.com",
-            "support": {
-                "issues": "https://github.com/laravel/framework/issues",
-                "source": "https://github.com/laravel/framework"
-            },
-            "time": "2021-10-19T13:10:37+00:00"
-        },
-        {
             "name": "mockery/mockery",
             "version": "1.4.4",
             "source": {
@@ -6701,16 +6645,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.27.1",
+            "version": "v6.27.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "d0e98c101bc57e8bb0121603bb84aff7c800a44e"
+                "reference": "8b6c99281463a037f19c06a910d4f02980103116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/d0e98c101bc57e8bb0121603bb84aff7c800a44e",
-                "reference": "d0e98c101bc57e8bb0121603bb84aff7c800a44e",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/8b6c99281463a037f19c06a910d4f02980103116",
+                "reference": "8b6c99281463a037f19c06a910d4f02980103116",
                 "shasum": ""
             },
             "require": {
@@ -6720,7 +6664,7 @@
                 "vlucas/phpdotenv": "^5.1"
             },
             "require-dev": {
-                "laravel/framework": "^8.67",
+                "laravel/framework": "^8.71",
                 "laravel/laravel": "8.x-dev",
                 "mockery/mockery": "^1.4.4",
                 "orchestra/canvas": "^6.1",
@@ -6729,7 +6673,7 @@
                 "symfony/process": "^5.0"
             },
             "suggest": {
-                "laravel/framework": "Required for testing (^8.67).",
+                "laravel/framework": "Required for testing (^8.71).",
                 "mockery/mockery": "Allow using Mockery for testing (^1.4.4).",
                 "orchestra/testbench-browser-kit": "Allow using legacy Laravel BrowserKit for testing (^6.0).",
                 "orchestra/testbench-dusk": "Allow using Laravel Dusk for testing (^6.0).",
@@ -6773,10 +6717,6 @@
                 "orchestral",
                 "testing"
             ],
-            "support": {
-                "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench-core"
-            },
             "funding": [
                 {
                     "url": "https://paypal.me/crynobone",
@@ -6787,7 +6727,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-11-17T02:37:48+00:00"
+            "time": "2021-12-02T05:39:52+00:00"
         },
         {
             "name": "pdepend/pdepend",
@@ -7465,16 +7405,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "aa4be8575f26070b100fccb67faabb28f21f66f8"
+                "reference": "cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/aa4be8575f26070b100fccb67faabb28f21f66f8",
-                "reference": "aa4be8575f26070b100fccb67faabb28f21f66f8",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf",
+                "reference": "cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf",
                 "shasum": ""
             },
             "require": {
@@ -7511,17 +7451,13 @@
                 "filesystem",
                 "iterator"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
-                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/3.0.5"
-            },
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:57:25+00:00"
+            "time": "2021-12-02T12:48:52+00:00"
         },
         {
             "name": "phpunit/php-invoker",
@@ -10229,5 +10165,5 @@
         "php": "^7.4|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "1.1.0"
 }

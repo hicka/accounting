@@ -28,18 +28,20 @@ abstract class TestCase extends Orchestra
 
         $this->faker = Faker::create();
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->be($user);
 
-        $currency = factory(Currency::class)->create();
+        $currency = Currency::factory()->create();
 
         $entity = $user->entity;
         $entity->currency_id = $currency->id;
         $entity->save();
 
+        $this->entity = $entity;
+
         $this->reportingCurrencyId = $currency->id;
 
-        $this->period = factory(ReportingPeriod::class)->create([
+        $this->period = ReportingPeriod::factory()->create([
             "calendar_year" => date("Y"),
             "entity_id" => $user->entity->id,
         ]);

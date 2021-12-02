@@ -12,6 +12,7 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,6 +69,7 @@ class Transaction extends Model implements Segregatable, Recyclable, Clearable, 
     use Clearing;
     use Assigning;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * Transaction Model Name

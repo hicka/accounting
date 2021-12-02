@@ -10,6 +10,8 @@
 
 namespace Seyls\Accounting\Models;
 
+use Database\Factories\BalanceFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,6 +60,7 @@ class Balance extends Model implements Recyclable, Clearable, Segregatable
     use Recycling;
     use Clearing;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * Balance Model Name
@@ -94,6 +97,16 @@ class Balance extends Model implements Recyclable, Clearable, Segregatable
         'transaction_date',
         'balance'
     ];
+
+    /**
+     * Returns a new factory for this model.
+     *
+     * @return BalanceFactory
+     */
+    protected static function newFactory(): BalanceFactory
+    {
+        return new BalanceFactory();
+    }
 
     /**
      * Construct new Balance.
@@ -262,7 +275,7 @@ class Balance extends Model implements Recyclable, Clearable, Segregatable
 
     /**
      * Balance Validation.
-     * 
+     *
      * @return bool
      */
     public function save(array $options = []): bool

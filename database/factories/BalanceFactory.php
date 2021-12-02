@@ -1,40 +1,45 @@
 <?php
+namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Account;
 use Seyls\Accounting\Models\Transaction;
 use Seyls\Accounting\Models\Balance;
 use Seyls\Accounting\Models\Currency;
 use Seyls\Accounting\Models\ExchangeRate;
 
-$factory->define(
-    Balance::class,
-    function (Faker $faker) {
+class BalanceFactory extends Factory
+{
+    protected $model = Balance::class;
+
+    public function definition(): array
+    {
         return [
             'exchange_rate_id' => factory(ExchangeRate::class)->create()->id,
-            'currency_id' => factory(Currency::class)->create()->id,
-            'account_id' => factory(Account::class)->create([
+            'currency_id' => Currency::factory()->create()->id,
+            'account_id' => Account::factory()->create([
                 'account_type' => Account::INVENTORY,
                 'category_id' => null
             ])->id,
             'reporting_period_id' => 1,
             'transaction_date' => Carbon::now()->subYears(1.5),
-            'transaction_no' => $faker->word,
-            'transaction_type' => $faker->randomElement([
+            'transaction_no' => $this->faker->word,
+            'transaction_type' => $this->faker->randomElement([
                 Transaction::IN,
                 Transaction::BL,
                 Transaction::JN
             ]),
-            'reference' => $faker->word,
-            'balance_type' =>  $faker->randomElement([
+            'reference' => $this->faker->word,
+            'balance_type' =>  $this->faker->randomElement([
                 Balance::DEBIT,
                 Balance::CREDIT
             ]),
-            'balance' => $faker->randomFloat(2),
+            'balance' => $this->faker->randomFloat(2),
         ];
     }
-);
+}

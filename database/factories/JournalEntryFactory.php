@@ -1,23 +1,28 @@
 <?php
+namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Transactions\JournalEntry;
 use Seyls\Accounting\Models\Transaction;
 use Seyls\Accounting\Models\Account;
 
-$factory->define(
-    JournalEntry::class,
-    function (Faker $faker) {
+class JournalEntryFactory extends Factory
+{
+    protected $model = JournalEntry::class;
+
+    public function definition()
+    {
         return [
-            'account_id' => factory(Account::class)->create()->id,
+            'account_id' => Account::factory()->create()->id,
             'date' => Carbon::now(),
-            'narration' => $faker->word,
+            'narration' => $this->faker->word,
             'transaction_type' => Transaction::JN,
-            'amount' => $faker->randomFloat(2),
+            'amount' => $this->faker->randomFloat(2),
         ];
     }
-);
+}

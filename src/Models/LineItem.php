@@ -10,6 +10,8 @@
 
 namespace Seyls\Accounting\Models;
 
+use Database\Factories\LineItemFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -48,6 +50,7 @@ class LineItem extends Model implements Recyclable, Segregatable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -64,6 +67,11 @@ class LineItem extends Model implements Recyclable, Segregatable
         'entity_id',
         'credited',
     ];
+
+    protected static function newFactory()
+    {
+        return new LineItemFactory();
+    }
 
     /**
      * Line Item Vats

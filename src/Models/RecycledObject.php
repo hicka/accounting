@@ -22,6 +22,8 @@ namespace Seyls\Accounting\Models;
  * @property Carbon $deleted_at
  */
 
+use Database\Factories\RecycledObjectFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,6 +37,7 @@ class RecycledObject extends Model implements Segregatable
     use Segregating;
     use SoftDeletes;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +47,11 @@ class RecycledObject extends Model implements Segregatable
     protected $fillable = [
         'user_id', 'entity_id', 'recyclable_id', 'recyclable_type',
     ];
+
+    protected static function newFactory()
+    {
+        return new RecycledObjectFactory();
+    }
 
     /**
      * Recycled object.

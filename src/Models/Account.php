@@ -12,6 +12,7 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -49,6 +50,7 @@ class Account extends Model implements Recyclable, Segregatable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * Account Type.

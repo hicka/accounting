@@ -12,6 +12,8 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\EntityFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -40,6 +42,7 @@ class Entity extends Model implements Recyclable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +57,11 @@ class Entity extends Model implements Recyclable
         'multi_currency',
         'locale',
     ];
+
+    protected static function newFactory()
+    {
+        return new EntityFactory();
+    }
 
     /**
      * Entity's Reporting Currency.

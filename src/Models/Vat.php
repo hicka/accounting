@@ -9,6 +9,8 @@
 
 namespace Seyls\Accounting\Models;
 
+use Database\Factories\VatFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -41,6 +43,7 @@ class Vat extends Model implements Segregatable, Recyclable
     use SoftDeletes;
     use Recycling;
     use ModelTablePrefix;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -56,6 +59,11 @@ class Vat extends Model implements Segregatable, Recyclable
         'valid_to',
         'entity_id',
     ];
+
+    protected static function newFactory()
+    {
+        return new VatFactory();
+    }
 
     /**
      * Instance Identifier.
