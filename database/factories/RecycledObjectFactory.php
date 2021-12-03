@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\RecycledObject;
 use Seyls\Accounting\User;
 
-class RecycledObjectFactory extends Factory
+class RecycledObjectFactory extends BaseFactory
 {
     protected $model = RecycledObject::class;
 

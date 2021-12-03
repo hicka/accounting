@@ -12,6 +12,7 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\AccountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -108,6 +109,11 @@ class Account extends Model implements Recyclable, Segregatable
         'description',
         'code',
     ];
+
+    protected static function newFactory()
+    {
+        return new AccountFactory();
+    }
 
     /**
      * Get Human Readable Account types

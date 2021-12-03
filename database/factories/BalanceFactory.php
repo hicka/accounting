@@ -13,14 +13,15 @@ use Seyls\Accounting\Models\Balance;
 use Seyls\Accounting\Models\Currency;
 use Seyls\Accounting\Models\ExchangeRate;
 
-class BalanceFactory extends Factory
+class BalanceFactory extends BaseFactory
 {
     protected $model = Balance::class;
 
     public function definition(): array
     {
+
         return [
-            'exchange_rate_id' => factory(ExchangeRate::class)->create()->id,
+            'exchange_rate_id' => ExchangeRate::factory()->create()->id,
             'currency_id' => Currency::factory()->create()->id,
             'account_id' => Account::factory()->create([
                 'account_type' => Account::INVENTORY,

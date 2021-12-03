@@ -12,16 +12,13 @@ use Seyls\Accounting\Models\Account;
 use Seyls\Accounting\Models\Currency;
 use Seyls\Accounting\Models\ExchangeRate;
 
-class TransactionFactory extends Factory
+class TransactionFactory extends BaseFactory
 {
     protected $model = Transaction::class;
 
     public function definition(): array
     {
         return [
-            'exchange_rate_id' => ExchangeRate::factory()->create()->id,
-            'currency_id' => Currency::factory()->create()->id,
-            'account_id' => Account::factory()->create()->id,
             'transaction_date' => Carbon::now(),
             'transaction_no' => $this->faker->word,
             'transaction_type' => $this->faker->randomElement(array_keys(config('accounting')['transactions'])),
@@ -29,6 +26,23 @@ class TransactionFactory extends Factory
             'narration' => $this->faker->sentence,
             'credited' =>  true,
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (Transaction $transaction) {
+            $transaction->exchange_rate_id = ExchangeRate::factory()->create([
+                'entity_id' => $transaction->entity_id
+            ])->id;
+            $transaction->currency_id = Currency::factory()->create([
+                'entity_id' => $transaction->entity_id
+            ])->id;
+            $transaction->account_id = Account::factory()->create([
+                'entity_id' => $transaction->entity_id
+            ])->id;
+        })->afterCreating(function (Transaction $transaction) {
+            //
+        });
     }
 }
 

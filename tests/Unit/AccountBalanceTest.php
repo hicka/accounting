@@ -307,12 +307,12 @@ class AccountBalanceTest extends TestCase
         $this->expectException(InvalidAccountClassBalance::class);
         $this->expectExceptionMessage('Income Statement Accounts cannot have Opening Balances');
 
-        factory(Balance::class)->create([
-            "account_id" => factory(Account::class)->create([
+        Balance::factory()->create([
+            "account_id" => Account::factory()->forEntity($this->entity)->create([
                 "account_type" => Account::OPERATING_REVENUE,
                 'category_id' => null
             ])->id,
-        ]);
+        ])->forEntity($this->entity);
     }
 
     public function testInvalidAccountClassBalanceLoggedOut()
@@ -368,9 +368,9 @@ class AccountBalanceTest extends TestCase
             'Opening Balance Transaction must be one of: Client Invoice, Supplier Bill, Journal Entry'
         );
 
-        factory(Balance::class)->create([
+        Balance::factory()->create([
             'transaction_type' => Transaction::CN,
-        ]);
+        ])->forEntity($this->entity);
     }
 
     public function testInvalidBalanceTransactionLoggedOut()
@@ -422,9 +422,10 @@ class AccountBalanceTest extends TestCase
         $this->expectException(InvalidBalanceType::class);
         $this->expectExceptionMessage('Opening Balance Type must be one of: Debit, Credit');
 
-        factory(Balance::class)->create([
+        Balance::factory()->create([
             "balance_type" => "X"
-        ]);
+        ])->forEntity($this->entity);
+
     }
 
     public function testInvalidBalanceTypeLoggedOut()
@@ -476,8 +477,7 @@ class AccountBalanceTest extends TestCase
 
         Balance::factory()->create([
             "balance" => -100,
-            "entity_id" => $this->entity->id,
-        ]);
+        ])->forEntity($this->entity);
     }
 
     public function testBalanceNegativeAmountLoggedOut()

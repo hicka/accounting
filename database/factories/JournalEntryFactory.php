@@ -11,7 +11,7 @@ use Seyls\Accounting\Transactions\JournalEntry;
 use Seyls\Accounting\Models\Transaction;
 use Seyls\Accounting\Models\Account;
 
-class JournalEntryFactory extends Factory
+class JournalEntryFactory extends BaseFactory
 {
     protected $model = JournalEntry::class;
 

@@ -12,6 +12,7 @@ namespace Seyls\Accounting\Models;
 
 use Carbon\Carbon;
 
+use Database\Factories\TransactionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -119,6 +120,11 @@ class Transaction extends Model implements Segregatable, Recyclable, Clearable, 
     protected $dates = [
         'transaction_date'
     ];
+
+    protected static function newFactory()
+    {
+        return new TransactionFactory();
+    }
 
     /**
      * Transaction LineItems

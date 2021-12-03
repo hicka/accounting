@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\ExchangeRate;
 use Seyls\Accounting\Models\Currency;
 
-class ExchangeRateFactory extends Factory
+class ExchangeRateFactory extends BaseFactory
 {
     protected $model = ExchangeRate::class;
 

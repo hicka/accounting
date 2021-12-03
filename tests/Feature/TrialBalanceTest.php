@@ -47,17 +47,17 @@ class TrialBalanceTest extends TestCase
          | ------------------------------
          */
 
-        $nonCurrentAsset = factory(Account::class)->create([
+        $nonCurrentAsset = Account::factory()->forEntity($this->entity)->create([
             'account_type' => Account::NON_CURRENT_ASSET,
             'category_id' => null
         ]);
 
         //balance
-        factory(Balance::class)->create([
+        Balance::factory()->forEntity($this->entity)->create([
 
             "account_id" => $nonCurrentAsset,
             "balance_type" => Balance::DEBIT,
-            "exchange_rate_id" => factory(ExchangeRate::class)->create([
+            "exchange_rate_id" => ExchangeRate::factory()->forEntity($this->entity)->create([
                 "rate" => 1
             ])->id,
             "balance" => 100
@@ -65,7 +65,7 @@ class TrialBalanceTest extends TestCase
 
         //transaction
         $bill = new SupplierBill([
-            "account_id" => factory(Account::class)->create([
+            "account_id" => Account::factory()->forEntity($this->entity)->create([
                 'account_type' => Account::PAYABLE,
                 'category_id' => null
             ])->id,
@@ -74,21 +74,21 @@ class TrialBalanceTest extends TestCase
         ]);
 
         $bill->addLineItem(
-            factory(LineItem::class)->create(["account_id" => $nonCurrentAsset])
+            LineItem::factory()->forEntity($this->entity)->create(["account_id" => $nonCurrentAsset])
         );
         $bill->post();
 
 
-        $contraAsset = factory(Account::class)->create([
+        $contraAsset = Account::factory()->forEntity($this->entity)->create([
             'account_type' => Account::CONTRA_ASSET,
             'category_id' => null
         ]);
 
         //balance
-        factory(Balance::class)->create([
+        Balance::factory()->forEntity($this->entity)->create([
             "account_id" => $contraAsset,
             "balance_type" => Balance::DEBIT,
-            "exchange_rate_id" => factory(ExchangeRate::class)->create([
+            "exchange_rate_id" => ExchangeRate::factory()->forEntity($this->entity)->create([
                 "rate" => 1
             ])->id,
             "balance" => 100

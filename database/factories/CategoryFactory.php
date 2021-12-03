@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Category;
 use Faker\Generator as Faker;
 
-class CategoryFactory extends Factory
+class CategoryFactory extends BaseFactory
 {
     protected $model = Category::class;
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Assignment;
 use Seyls\Accounting\Models\Transaction;
 
-class AssignmentFactory extends Factory
+class AssignmentFactory extends BaseFactory
 {
     protected $model = Assignment::class;
 

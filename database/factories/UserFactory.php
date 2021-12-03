@@ -22,7 +22,7 @@ use Seyls\Accounting\Models\Entity;
 | model instances for testing / seeding your application's database.
 |
 */
-class UserFactory extends Factory
+class UserFactory extends BaseFactory
 {
     protected $model = User::class;
 

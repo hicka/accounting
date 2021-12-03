@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Entity;
 
-class EntityFactory extends Factory
+class EntityFactory extends BaseFactory
 {
     protected $model = Entity::class;
 

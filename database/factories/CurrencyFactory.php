@@ -10,7 +10,7 @@ use Seyls\Accounting\Models\Currency;
 
 use Faker\Generator as Faker;
 
-class CurrencyFactory extends Factory
+class CurrencyFactory extends BaseFactory
 {
     protected $model = Currency::class;
 

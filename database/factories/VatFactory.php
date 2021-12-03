@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Vat;
 use Seyls\Accounting\Models\Account;
 
-class VatFactory extends Factory
+class VatFactory extends BaseFactory
 {
     protected $model = Vat::class;
 

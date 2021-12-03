@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\Account;
 use Seyls\Accounting\Models\Category;
 
-class AccountFactory extends Factory
+class AccountFactory extends BaseFactory
 {
     protected $model = Account::class;
 
@@ -19,12 +19,10 @@ class AccountFactory extends Factory
         unset($types[3]);
 
         $type = $this->faker->randomElement($types);
-        $category = Category::factory()->create();
-
         return [
             'name' => $this->faker->name,
             'account_type' => $type,
-            'category_id' => $category->id,
+            'category_id' => Category::factory()->create()->id,
             'code' => $this->faker->randomDigit,
         ];
     }

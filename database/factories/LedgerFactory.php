@@ -15,7 +15,7 @@ use Seyls\Accounting\Models\Transaction;
 use Seyls\Accounting\Models\Currency;
 use Seyls\Accounting\Models\Vat;
 
-class LedgerFactory extends Factory
+class LedgerFactory extends BaseFactory
 {
     protected $model = Ledger::class;
 

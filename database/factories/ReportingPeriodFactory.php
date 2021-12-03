@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Seyls\Accounting\Models\ReportingPeriod;
 use Faker\Generator as Faker;
 
-class ReportingPeriodFactory extends Factory
+class ReportingPeriodFactory extends BaseFactory
 {
     protected $model = ReportingPeriod::class;
 

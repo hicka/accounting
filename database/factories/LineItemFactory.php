@@ -10,7 +10,7 @@ use Seyls\Accounting\Models\LineItem;
 use Seyls\Accounting\Models\Account;
 use Seyls\Accounting\Models\Transaction;
 
-class LineItemFactory extends Factory
+class LineItemFactory extends BaseFactory
 {
     protected $model = LineItem::class;
 
