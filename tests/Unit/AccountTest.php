@@ -537,11 +537,11 @@ class AccountTest extends TestCase
 
         $clientInvoice->post();
 
-        $clients = Account::sectionBalances([Account::RECEIVABLE]);
+        $clients = Account::sectionBalances($this->entity,[Account::RECEIVABLE]);
 
-        $incomes = Account::sectionBalances([Account::OPERATING_REVENUE]);
+        $incomes = Account::sectionBalances($this->entity,[Account::OPERATING_REVENUE]);
 
-        $control = Account::sectionBalances([Account::CONTROL]);
+        $control = Account::sectionBalances($this->entity,[Account::CONTROL]);
 
         $this->assertTrue(in_array($category1, array_keys($clients["sectionCategories"])));
         $this->assertEquals($clients["sectionCategories"][$category1]["id"], $account1->category->id);
@@ -671,8 +671,8 @@ class AccountTest extends TestCase
             "balance" => 25
         ]);
 
-        $this->assertEquals(Account::sectionBalances([Account::RECEIVABLE])['sectionMovement'], 0);
-        $this->assertEquals(Account::sectionBalances([Account::CONTROL])['sectionMovement'], 0);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::RECEIVABLE])['sectionMovement'], 0);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::CONTROL])['sectionMovement'], 0);
 
         $revenue = new Account([
             'name' => $this->faker->name,
@@ -714,8 +714,8 @@ class AccountTest extends TestCase
         $clientInvoice->addLineItem($line);
         $clientInvoice->post();
 
-        $this->assertEquals(Account::sectionBalances([Account::RECEIVABLE])['sectionMovement'], -116);
-        $this->assertEquals(Account::sectionBalances([Account::CONTROL])['sectionMovement'], 16);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::RECEIVABLE])['sectionMovement'], -116);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::CONTROL])['sectionMovement'], 16);
 
         $supplier = new Account([
             'name' => $this->faker->name,
@@ -751,8 +751,8 @@ class AccountTest extends TestCase
             "balance" => 50
         ]);
 
-        $this->assertEquals(Account::sectionBalances([Account::PAYABLE])['sectionMovement'], 0);
-        $this->assertEquals(Account::sectionBalances([Account::NON_CURRENT_ASSET])['sectionMovement'], 0);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::PAYABLE])['sectionMovement'], 0);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::NON_CURRENT_ASSET])['sectionMovement'], 0);
 
         //Supplier Bill Transaction
         $SupplierBill = new SupplierBill([
@@ -780,9 +780,9 @@ class AccountTest extends TestCase
         $SupplierBill->post();
 
 
-        $this->assertEquals(Account::sectionBalances([Account::PAYABLE])['sectionMovement'], 58);
-        $this->assertEquals(Account::sectionBalances([Account::NON_CURRENT_ASSET])['sectionMovement'], -50);
-        $this->assertEquals(Account::sectionBalances([Account::CONTROL])['sectionMovement'], 8);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::PAYABLE])['sectionMovement'], 58);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::NON_CURRENT_ASSET])['sectionMovement'], -50);
+        $this->assertEquals(Account::sectionBalances($this->entity,[Account::CONTROL])['sectionMovement'], 8);
     }
 
     /**
@@ -1047,7 +1047,7 @@ class AccountTest extends TestCase
             "balance" => 10
         ]);
 
-        $openingBalances = Account::openingBalances(intval(date("Y")));
+        $openingBalances = Account::openingBalances(intval(date("Y")),$this->entity);
 
         $this->assertTrue(array_sum($openingBalances['balances']) == 0);
         $this->assertEquals($openingBalances['accounts'][0]->openingBalance, 70);
@@ -1115,7 +1115,7 @@ class AccountTest extends TestCase
         $clientInvoice->addLineItem($line);
         $clientInvoice->post();
 
-        $section = Account::sectionBalances([Account::RECEIVABLE]);
+        $section = Account::sectionBalances($this->entity,[Account::RECEIVABLE]);
         $sectionAccounts = $section['sectionCategories']['Receivable']['accounts'];
 
         $sectionAccountsTotalBalance = $sectionAccounts->reduce(function ($carry, $account) {

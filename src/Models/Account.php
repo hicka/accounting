@@ -144,12 +144,8 @@ class Account extends Model implements Recyclable, Segregatable
      *
      * @return array
      */
-    public static function openingBalances(int $year, Entity $entity = null)
+    public static function openingBalances(int $year, Entity $entity)
     {
-        if (is_null($entity)) {
-            $entity = Auth::user()->entity;
-        }
-
         $accounts = collect([]);
         $balances = ['debit' => 0, 'credit' => 0];
 
@@ -178,18 +174,13 @@ class Account extends Model implements Recyclable, Segregatable
      * @return array
      */
     public static function sectionBalances(
+        Entity $entity,
         array $accountTypes,
         $startDate = null,
         $endDate = null,
-        $fullBalance = true,
-        Entity $entity = null
+        $fullBalance = true
     ): array
     {
-
-        if (is_null($entity)) {
-            $entity = Auth::user()->entity;
-        }
-
         $balances = ['sectionOpeningBalance' => 0, 'sectionClosingBalance' => 0, 'sectionMovement' => 0, 'sectionCategories' => []];
 
         $startDate = is_null($startDate) ? ReportingPeriod::periodStart($endDate, $entity) : Carbon::parse($startDate);

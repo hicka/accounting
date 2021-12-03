@@ -37,6 +37,8 @@ abstract class TestCase extends Orchestra
         $entity->currency_id = $currency->id;
         $entity->save();
 
+        $this->entity = $entity;
+
         $this->reportingCurrencyId = $currency->id;
 
         $this->period = factory(ReportingPeriod::class)->create([

@@ -126,22 +126,21 @@ class CashFlowStatement extends FinancialStatement
         // Accounts movements for the Period
         foreach (array_keys($this->balances) as $section) {
             $this->balances[$section] = Account::sectionBalances(
+                $this->entity,
                 config('accounting')[$section],
                 null,
                 null,
-                true,
-                $this->entity
+                true
             )['sectionMovement'];
         }
 
         // Profit for the Period
         $this->balances[self::PROFIT] = Account::sectionBalances(
+                $this->entity,
                 IncomeStatement::getAccountTypes(),
                 null,
                 null,
-                true,
-                $this->entity
-
+                true
             )["sectionClosingBalance"] * -1;
 
         // Operations Cash Flow
@@ -159,11 +158,12 @@ class CashFlowStatement extends FinancialStatement
         // Cash at start of the Period
         $periodStart = ReportingPeriod::periodStart($this->period['endDate'], $this->entity);
         $this->balances[self::START_CASH_BALANCE] = Account::sectionBalances(
+            $this->entity,
             [Account::BANK],
             $periodStart,
             $this->period['startDate'],
             true,
-            $this->entity
+
         )["sectionClosingBalance"];
 
         // Cash at end of the Period
@@ -171,11 +171,11 @@ class CashFlowStatement extends FinancialStatement
 
         // Cashbook Balance
         $this->results[self::CASHBOOK_BALANCE] = Account::sectionBalances(
+            $this->entity,
             [Account::BANK],
             $this->period['startDate'],
             $this->period['endDate'],
-            true,
-            $this->entity
+            true
         )["sectionClosingBalance"];
 
         return [

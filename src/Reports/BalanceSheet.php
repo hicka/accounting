@@ -124,11 +124,12 @@ class BalanceSheet extends FinancialStatement
 
         // Net Profit
         $netProfit = Account::sectionBalances(
+            $this->entity,
             IncomeStatement::getAccountTypes(),
             $this->period['startDate'],
             $this->period['endDate'],
             true,
-            $this->entity
+
         )["sectionClosingBalance"];
 
         $this->balances[self::EQUITY][self::NET_PROFIT] = $netProfit;

@@ -107,7 +107,7 @@ abstract class FinancialStatement
     {
         foreach (array_keys($this->accounts) as $section) {
             foreach (config('accounting')[$section] as $accountType) {
-                $sectionBalances = Account::sectionBalances([$accountType], $startDate, $endDate, $fullbalance, $this->entity);
+                $sectionBalances = Account::sectionBalances($this->entity,[$accountType], $startDate, $endDate, $fullbalance);
 
                 if ($sectionBalances["sectionClosingBalance"] <> 0) {
 
